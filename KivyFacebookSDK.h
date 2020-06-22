@@ -1,6 +1,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+typedef void (*callbackfunc) (const char *name, void *callback);
+
 @interface KivyFacebookSDK : NSObject
 
 @property (nonatomic, assign) callbackfunc mCallback;
@@ -8,7 +10,7 @@
 
 
 +(KivyFacebookSDK*) sharedInstance;
-- (void) Login;
+- (void) login:(callbackfunc)callback util:(void*)util;
 @end
 
-void Login();
+void Login(callbackfunc callback, void *util);
