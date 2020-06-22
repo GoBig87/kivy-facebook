@@ -78,7 +78,7 @@ base_flags = determine_base_flags()
 osx_flags = {
     'extra_link_args': [],
     'extra_compile_args': ['-ObjC++'],
-    'depends': ['KivyFacebookSDK.m','KivyFacebookSDK.h']}
+    'depends': ['FBSDKLoginKit','KivyFacebookSDK.m','KivyFacebookSDK.h']}
 sources['kivy_facebook_sdk.pyx'] = merge(base_flags, osx_flags)
 
 ext_modules = get_extensions_from_sources(sources)
