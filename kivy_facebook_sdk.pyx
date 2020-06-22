@@ -5,7 +5,7 @@ from libcpp cimport bool
 
 cdef extern from "KivyFacebookSDK.h":
     ctypedef void (*callbackfunc)(const char *status, const char *error, void *util)
-    void Login(callbackfunc call_back, void *util)
+    void Login(callbackfunc callback, void *util)
 
 
 class FacebookLogin():
@@ -16,7 +16,7 @@ class FacebookLogin():
         Login(callback, <void*>self.util)
 
 
-cdef void callback(const char *status, const char *error, void *util) with gil:
+cdef void callback(const char *status, const char *error, void *util):
     status_pystr = (status.decode('utf-8'))
     error_pystr  = (error.decode('utf-8'))
     (<object>util).send_status(status_pystr, error_pystr)
