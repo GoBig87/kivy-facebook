@@ -4,7 +4,7 @@ from cpython.ref cimport Py_INCREF
 from libcpp cimport bool
 
 cdef extern from "KivyFacebookSDK.h":
-    ctypedef void (*callbackfunc)(const char *name, void *user_data, void *util)
+    ctypedef void (*callbackfunc)(const char *status, const char *error, void *util)
     void Login(callbackfunc call_back, void *util)
 
 
