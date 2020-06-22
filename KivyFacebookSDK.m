@@ -30,14 +30,14 @@ static KivyFacebookSDK *kivyFacebookSDK;
 -(void) login:(callbackfunc)callback util:(void*)util{
 
     _callback = callback;
-    _util - util;
+    _util = util;
 
     _loginManager = [[FBSDKLoginManager alloc] init];
 
 
     FBSDKLoginManagerLoginResultBlock handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        NSString token = result.tokenString
-        self.mCallback(token, *error, self.mUtil)
+        NSString *token = result.tokenString
+        self.mCallback(*token, *error, self.mUtil)
       }
     };
 
