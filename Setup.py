@@ -9,18 +9,16 @@ from os import environ
 
 src_path = build_path = dirname(__file__)
 
-os.environ['LDFLAGS'] = '-framework FBSDKCoreKit'
-os.environ['LDFLAGS'] += '-framework FBSDKGamingServicesKit'
-os.environ['LDFLAGS'] += '-framework FBSDKLoginKit'
-os.environ['LDFLAGS'] += '-framework FBSDKShareKit'
-
 def read(file_path):
     with open(file_path) as fp:
         return fp.read()
 
 def determine_base_flags():
     flags = {
-        'include_dirs': [],
+        'include_dirs': [join(src_path, 'dist','Frameworks','FBSDKCoreKit.framework','Headers'),
+                         join(src_path, 'dist', 'Frameworks', 'FBSDKGamingServicesKit.framework', 'Headers'),
+                         join(src_path, 'dist', 'Frameworks', 'FBSDKShareKit.framework', 'Headers'),
+                         join(src_path, 'dist', 'Frameworks', 'FBSDKLoginKit.framework', 'Headers')],
         'library_dirs': [],
         'extra_link_args': [],
         'extra_compile_args': []}
@@ -81,9 +79,10 @@ sources = {}
 src_path = build_path = dirname(__file__)
 base_flags = determine_base_flags()
 osx_flags = {
+    'extra_link_args': ['-framework', 'FBSDKCoreKit', 'FBSDKGamingServicesKit', 'FBSDKLoginKit', 'FBSDKShareKit'],
     'extra_link_args': [],
     'extra_compile_args': ['-ObjC++'],
-    'depends': ['FBSDKLoginKit','KivyFacebookSDK.m','KivyFacebookSDK.h']}
+    'depends': ['KivyFacebookSDK.m','KivyFacebookSDK.h']}
 sources['kivy_facebook_sdk.pyx'] = merge(base_flags, osx_flags)
 
 ext_modules = get_extensions_from_sources(sources)
