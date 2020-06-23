@@ -25,7 +25,7 @@
         FBSDKAccessToken *token = result.token;
         NSString *tokenString = token.tokenString;
         const char *tokenStringChar = [tokenString UTF8String];
-        NSString *errorString = [error localizedDescription]
+        NSString *errorString = [error localizedDescription];
         const char *errorStringChar = [errorString UTF8String];
         self.mCallback(tokenStringChar, errorStringChar, self.mUtil);
     };
