@@ -20,12 +20,12 @@ def determine_base_flags():
         'extra_link_args': [],
         'extra_compile_args': []}
 
-    # sysroot = environ.get('IOSSDKROOT', environ.get('SDKROOT'))
-    # if not sysroot:
-    #     raise Exception('IOSSDKROOT is not set')
-    # flags['include_dirs'] += [sysroot]
-    # flags['extra_compile_args'] += ['-isysroot', sysroot]
-    # flags['extra_link_args'] += ['-isysroot', sysroot]
+    sysroot = environ.get('IOSSDKROOT', environ.get('SDKROOT'))
+    if not sysroot:
+        raise Exception('IOSSDKROOT is not set')
+    flags['include_dirs'] += [sysroot]
+    flags['extra_compile_args'] += ['-isysroot', sysroot]
+    flags['extra_link_args'] += ['-isysroot', sysroot]
 
     return flags
 
