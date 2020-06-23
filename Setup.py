@@ -63,7 +63,7 @@ def get_extensions_from_sources(sources):
         depends = [expand(src_path, x) for x in flags.pop('depends', [])]
         f_depends = [x for x in depends if x.rsplit('.', 1)[-1] in ('m')]
         c_depends = [expand(src_path, x) for x in flags.pop('c_depends', [])]
-        module_name = 'facebooksdk'
+        module_name = 'kivy_facebook_sdk'
         flags_clean = {'depends': depends}
         for key, value in flags.items():
             if len(value):
