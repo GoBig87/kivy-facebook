@@ -24,7 +24,10 @@
     FBSDKLoginManagerLoginResultBlock handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         FBSDKAccessToken *token = result.token;
         NSString *tokenString = token.tokenString;
-        self.mCallback(*tokenString, *error, self.mUtil);
+        const char *tokenStringChar = [tokenString UTF8String];
+        NSString *errorString = [error localizedDescription]
+        const char *errorStringChar = [errorString UTF8String];
+        self.mCallback(tokenStringChar, errorStringChar, self.mUtil);
     };
 
     [_loginManager logInWithPermissions:@[@"public_profile"]
