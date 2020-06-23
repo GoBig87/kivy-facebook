@@ -5,8 +5,6 @@ typedef void (*callbackfunc) (const char *status, const char *error, void *callb
 
 @interface KivyFacebookSDK : NSObject
 
-@property (nonatomic, assign) callbackfunc mCallback;
-@property (nonatomic, assign) void* mUtil;
 
 
 - (void) login:(callbackfunc)callback util:(void*)util;
