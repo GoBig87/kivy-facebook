@@ -4,8 +4,7 @@ from cpython.ref cimport Py_INCREF
 from libcpp cimport bool
 
 cdef extern from "facebook_sdk.h":
-    ctypedef void (*callbackfunc)(const char *status, const char *error, void *util)
-    void Login(callbackfunc callback, void *util)
+    ctypedef void (*callbackfunc)(const char *status, const char *error, void *_util)
 
 
 class FacebookLogin():
