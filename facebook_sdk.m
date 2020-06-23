@@ -20,7 +20,7 @@
         const char *tokenStringChar = [tokenString UTF8String];
         NSString *errorString = [error localizedDescription];
         const char *errorStringChar = [errorString UTF8String];
-        callbackfunc(tokenStringChar, errorStringChar, util);
+        callback(tokenStringChar, errorStringChar, util);
     };
 
     [_loginManager logInWithPermissions:@[@"public_profile"]
