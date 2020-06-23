@@ -5,7 +5,7 @@ from libcpp cimport bool
 
 cdef extern from "facebook_sdk.h":
     ctypedef void (*callbackfunc)(const char *status, const char *error, void *_util)
-    void Login(callbackfunc call_back, void *_util)
+    void LoginCpp(callbackfunc call_back, void *_util)
 
 
 class FacebookLogin():
@@ -13,7 +13,7 @@ class FacebookLogin():
         self.util = util
 
     def login_user(self):
-        Login(callback, <void*>self.util)
+        LoginCpp(callback, <void*>self.util)
 
 
 cdef void callback(const char *status, const char *error, void *util):

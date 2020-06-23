@@ -10,4 +10,4 @@ typedef void (*callbackfunc) (const char *status, const char *error, void *util)
 - (void) LoginResult:(callbackfunc)callback util:(void*)util;
 @end
 
-void Login(callbackfunc callback, void *util);
+void LoginCpp(callbackfunc callback, void *util);

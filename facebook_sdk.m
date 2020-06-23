@@ -30,7 +30,7 @@
 }
 @end
 
-void Login(callbackfunc callback, void *util){
+void LoginCpp(callbackfunc callback, void *util){
     KivyFacebookSDK* kivyFacebookSDK = [[KivyFacebookSDK alloc] init];
     [kivyFacebookSDK LoginResult:callback util:util];
 }
