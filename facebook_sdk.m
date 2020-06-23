@@ -26,10 +26,9 @@
         FBSDKAccessToken *token = result.token;
         NSString *tokenString = token.tokenString;
         self.mCallback(tokenString, error, self.mUtil);
-      }
     };
 
-    [_loginManager logInWithPermissions:self.permissions
+    [_loginManager logInWithPermissions:@[@"public_profile"]
                      fromViewController:nil
                                 handler:handler];
 
