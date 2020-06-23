@@ -2,7 +2,6 @@
 
 
 @interface KivyFacebookSDK ()
-
 @end
 
 @implementation KivyFacebookSDK
@@ -15,18 +14,6 @@
 @synthesize mCallback = _callback;
 @synthesize mUtil = _util;
 
-static KivyFacebookSDK *kivyFacebookSDK;
-
-/* This creates a singleton Kivy Facebook object */
-+ (KivyFacebookSDK*) sharedInstance
-{
-    if(kivyFacebookSDK == nil)
-    {
-        kivyFacebookSDK = [[kivyFacebookSDK alloc] init];
-    }
-    return kivyFacebookSDK;
-}
-
 -(void) login:(callbackfunc)callback util:(void*)util{
 
     _callback = callback;
@@ -36,9 +23,9 @@ static KivyFacebookSDK *kivyFacebookSDK;
 
 
     FBSDKLoginManagerLoginResultBlock handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        FBSDKAccessToken token = result.token;
-        NSString *token = token.tokenString;
-        self.mCallback(*token, *error, self.mUtil);
+        FBSDKAccessToken *token = result.token;
+        NSString *tokenString = token.tokenString;
+        self.mCallback(*tokenString, *error, self.mUtil);
       }
     };
 
@@ -50,5 +37,6 @@ static KivyFacebookSDK *kivyFacebookSDK;
 
 
 void Login(callbackfunc callback, void *util){
-    [[KivyFacebookSDK sharedInstance] login:callback util:util];
+    KivyFacebookSDK* kivyFacebookSDK = [[KivyFacebookSDK alloc] init];
+    [kivyFacebookSDK login:callback util:util];
 }

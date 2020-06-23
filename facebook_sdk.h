@@ -9,7 +9,6 @@ typedef void (*callbackfunc) (const char *status, const char *error, void *callb
 @property (nonatomic, assign) void* mUtil;
 
 
-+(KivyFacebookSDK*) sharedInstance;
 - (void) login:(callbackfunc)callback util:(void*)util;
 @end
 
