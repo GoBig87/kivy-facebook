@@ -15,10 +15,7 @@ def read(file_path):
 
 def determine_base_flags():
     flags = {
-        'include_dirs': [join(src_path, 'dist','Frameworks','FBSDKCoreKit.framework','Headers'),
-                         join(src_path, 'dist', 'Frameworks', 'FBSDKGamingServicesKit.framework', 'Headers'),
-                         join(src_path, 'dist', 'Frameworks', 'FBSDKShareKit.framework', 'Headers'),
-                         join(src_path, 'dist', 'Frameworks', 'FBSDKLoginKit.framework', 'Headers')],
+        'include_dirs': [],
         'library_dirs': [],
         'extra_link_args': [],
         'extra_compile_args': []}
@@ -79,7 +76,7 @@ sources = {}
 src_path = build_path = dirname(__file__)
 base_flags = determine_base_flags()
 osx_flags = {
-    'extra_link_args': ['-framework', 'FBSDKCoreKit', 'FBSDKGamingServicesKit', 'FBSDKLoginKit', 'FBSDKShareKit'],
+    'extra_link_args': [],
     'extra_link_args': [],
     'extra_compile_args': ['-ObjC++'],
     'depends': ['KivyFacebookSDK.m','KivyFacebookSDK.h']}
