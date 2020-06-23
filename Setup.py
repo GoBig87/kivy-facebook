@@ -80,6 +80,7 @@ osx_flags = {
     'extra_link_args': [],
     'extra_compile_args': ['-ObjC++', '-target=aarch64-apple-darwin13', '-miphoneos-version-min=8.0'],
     'depends': ['facebook_sdk.m','facebook_sdk.h']}
+
 sources['facebook_sdk.pyx'] = merge(base_flags, osx_flags)
 
 ext_modules = get_extensions_from_sources(sources)
