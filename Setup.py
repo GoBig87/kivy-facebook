@@ -9,6 +9,11 @@ from os import environ
 
 src_path = build_path = dirname(__file__)
 
+os.environ['LDFLAGS'] = '-framework FBSDKCoreKit'
+os.environ['LDFLAGS'] += '-framework FBSDKGamingServicesKit'
+os.environ['LDFLAGS'] += '-framework FBSDKLoginKit'
+os.environ['LDFLAGS'] += '-framework FBSDKShareKit'
+
 def read(file_path):
     with open(file_path) as fp:
         return fp.read()
