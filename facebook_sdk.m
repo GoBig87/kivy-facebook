@@ -1,6 +1,5 @@
 #import "facebook_sdk.h"
 
-
 @interface KivyFacebookSDK ()
 @end
 
