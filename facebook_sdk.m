@@ -1,13 +1,9 @@
 #import "facebook_sdk.h"
 
-@interface KivyFacebookSDK ()
+@interface KivyFacebookSDK : NSObject
 @end
 
 @implementation KivyFacebookSDK
-{
-}
-
-
 
 -(void) LoginResult:(callbackfunc)callback util:(void*)util{
 
