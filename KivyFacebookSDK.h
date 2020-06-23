@@ -1,5 +1,5 @@
-#import "FBSDKCoreKit.framework/Headers/FBSDKCoreKit.h"
-#import "FBSDKLoginKit.framework/Headers/FBSDKLoginKit.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 typedef void (*callbackfunc) (const char *status, const char *error, void *callback);
 
