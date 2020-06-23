@@ -5,8 +5,8 @@ from libcpp cimport bool
 
 
 cdef extern from "facebook_sdk.h":
-    ctypedef void (*callbackfunc)(const char *status, const char *error, void *_util)
-    void Login(callbackfunc call_back, void *_util)
+    ctypedef void (*callbackfunc)(const char *status, const char *error, void *func)
+    void MyLoginCallBack(callbackfunc call_back, void *_util)
 
 
 class FacebookLogin():
@@ -14,10 +14,10 @@ class FacebookLogin():
         self.util = util
 
     def login_user(self):
-        Login(callback, <void*>self.util)
+        MyLoginCallBack(callback, <void*>self.util)
 
 
-cdef void callback(const char *status, const char *error, void *util):
+cdef void callback(const char *status, const char *error, void *func):
     status_pystr = (status.decode('utf-8'))
     error_pystr  = (error.decode('utf-8'))
     (<object>util).send_status(status_pystr, error_pystr)
