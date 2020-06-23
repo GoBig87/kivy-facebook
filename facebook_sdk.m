@@ -9,7 +9,7 @@
 
 
 
--(void) login:(callbackfunc)callback util:(void*)util{
+-(void) LoginResult:(callbackfunc)callback util:(void*)util{
 
     FBSDKLoginManager *_loginManager = [[FBSDKLoginManager alloc] init];
 
@@ -32,5 +32,5 @@
 
 void Login(callbackfunc callback, void *util){
     KivyFacebookSDK* kivyFacebookSDK = [[KivyFacebookSDK alloc] init];
-    [kivyFacebookSDK login:callback util:util];
+    [kivyFacebookSDK LoginResult:callback util:util];
 }
