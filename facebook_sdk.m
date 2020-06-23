@@ -1,5 +1,6 @@
 #import "facebook_sdk.h"
 
+
 @implementation KivyFacebookSDK
 
 -(void) LoginResult:(callbackfunc)callback util:(void*)util{
@@ -23,7 +24,7 @@
 }
 @end
 
-void LoginCpp(callbackfunc callback, void *util){
+void Login(callbackfunc callback, void *util){
     KivyFacebookSDK* kivyFacebookSDK = [[KivyFacebookSDK alloc] init];
     [kivyFacebookSDK LoginResult:callback util:util];
 }
