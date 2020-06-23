@@ -36,8 +36,9 @@ static KivyFacebookSDK *kivyFacebookSDK;
 
 
     FBSDKLoginManagerLoginResultBlock handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        NSString *token = result.tokenString
-        self.mCallback(*token, *error, self.mUtil)
+        FBSDKAccessToken token = result.token;
+        NSString *token = token.tokenString;
+        self.mCallback(*token, *error, self.mUtil);
       }
     };
 
