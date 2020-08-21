@@ -4,21 +4,19 @@ from cpython.ref cimport Py_INCREF
 from libcpp cimport bool
 
 
-cdef extern from "facebook_sdk.h":
-    ctypedef void (*callbackfunc)(const char *status, const char *error, void *func)
-    void MyLoginCallBack(callbackfunc call_back, void *_util)
+cdef extern from "FacebookLoginButton.h":
+    ctypedef void(*callbackfunc)(const char * token)
+    void PressFacebookButton(callbackfunc call_back, void *_util)
 
 
-class FacebookLogin():
+class LoginButton():
     def __init__(self,util):
         self.util = util
 
-    def login_user(self):
-        MyLoginCallBack(callback, <void*>self.util)
+    def get_token(self):
+        PressFacebookButton(callback, <void*> self.util)
 
 
-cdef void callback(const char *status, const char *error, void *func):
-    status_pystr = (status.decode('utf-8'))
-    error_pystr  = (error.decode('utf-8'))
-    (<object>util).send_status(status_pystr, error_pystr)
+cdef void callback(const char *token, void *util):
+    (<object> util).FacebookToken = (token.decode('utf-8'))
 

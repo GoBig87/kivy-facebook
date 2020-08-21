@@ -63,7 +63,7 @@ def get_extensions_from_sources(sources):
         depends = [expand(src_path, x) for x in flags.pop('depends', [])]
         f_depends = [x for x in depends if x.rsplit('.', 1)[-1] in ('m')]
         c_depends = [expand(src_path, x) for x in flags.pop('c_depends', [])]
-        module_name = 'facebook_sdk'
+        module_name = 'facebook'
         flags_clean = {'depends': depends}
         for key, value in flags.items():
             if len(value):
@@ -79,9 +79,9 @@ osx_flags = {
     'extra_link_args': [],
     'extra_link_args': [],
     'extra_compile_args': ['-ObjC++', '--target=aarch64-apple-darwin13', '-miphoneos-version-min=8.0'],
-    'depends': ['facebook_sdk.m','facebook_sdk.h']}
+    'depends': ['FacebookLoginButton.m', 'FacebookLoginButton.h']}
 
-sources['facebook_sdk.pyx'] = merge(base_flags, osx_flags)
+sources['facebook.pyx'] = merge(base_flags, osx_flags)
 
 ext_modules = get_extensions_from_sources(sources)
 
