@@ -5,7 +5,7 @@ from libcpp cimport bool
 
 
 cdef extern from "FacebookLoginButton.h":
-    ctypedef void(*callbackfunc)(const char * token)
+    ctypedef void(*callbackfunc)(const char *token, void *util)
     void PressFacebookButton(callbackfunc call_back, void *_util)
 
 
