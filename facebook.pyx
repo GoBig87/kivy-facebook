@@ -19,8 +19,17 @@ class FacebookLogin():
         Login(callback, <void*>self.util)
 
 
-cdef void callback(const char *status, const char *error, void *util):
-    status_pystr = (status.decode('utf-8'))
-    error_pystr  = (error.decode('utf-8'))
+cdef void callback(const char *status, const char *error, void *util) with gil:
+    printf("%s\n", status)
+    printf("%s\n", error)
+    if status:
+        status_pystr = (status.decode('utf-8'))
+    else:
+        status_pystr = ''
+    if error:
+        error_pystr  = (error.decode('utf-8'))
+    else:
+        error_pystr = ''
+    print("Token %s\n", status_pystr)
+    print("Error %s\n", error_pystr)
     (<object>util).send_status(status_pystr, error_pystr)
-

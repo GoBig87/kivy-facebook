@@ -26,5 +26,5 @@
 #if FBSDK_SWIFT_PACKAGE
 #import <FBSDKCoreKit.h>
 #else
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "../../FBSDKCoreKit.framework/Headers/FBSDKCoreKit.h"
 #endif

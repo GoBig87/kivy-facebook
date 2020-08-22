@@ -5,10 +5,13 @@
 
 @implementation FacebookLoginButton
 
+@synthesize mCallback = _callback;
+
 -(void) LoginResult:(callbackfunc)callback util:(void*)util{
 
-    FBSDKLoginManager *_loginManager = [[FBSDKLoginManager alloc] init];
+    _callback = callback;
 
+    FBSDKLoginManager *_loginManager = [[FBSDKLoginManager alloc] init];
 
     FBSDKLoginManagerLoginResultBlock handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         FBSDKAccessToken *token = result.token;
@@ -16,7 +19,7 @@
         const char *tokenStringChar = [tokenString UTF8String];
         NSString *errorString = [error localizedDescription];
         const char *errorStringChar = [errorString UTF8String];
-        callback(tokenStringChar, errorStringChar, util);
+        self.mCallback(tokenStringChar, errorStringChar, util);
     };
 
     [_loginManager logInWithPermissions:@[@"public_profile"]
