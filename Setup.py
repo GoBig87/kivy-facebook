@@ -76,8 +76,7 @@ sources = {}
 src_path = build_path = dirname(__file__)
 base_flags = determine_base_flags()
 osx_flags = {
-    'extra_link_args': [],
-    'extra_link_args': [],
+    'extra_link_args': ['-framework', 'FBSDKCoreKit', 'FBSDKLoginKit'],
     'extra_compile_args': ['-ObjC++', '--target=aarch64-apple-darwin13', '-miphoneos-version-min=8.0'],
     'depends': ['FacebookLoginButton.m', 'FacebookLoginButton.h']}
 
@@ -86,7 +85,7 @@ sources['facebook.pyx'] = merge(base_flags, osx_flags)
 ext_modules = get_extensions_from_sources(sources)
 
 setup(
-      name='facebooksdk',
+      name='facebook',
       version='0.1',
       description="A wrapper for Facebook IOS SDK",
       classifiers=[

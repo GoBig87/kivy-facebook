@@ -1,11 +1,9 @@
-#import <FBSDKLoginKit/FBSDKLoginManager.h>
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "FBSDKLoginKit/FBSDKLoginKit.h"
 
 typedef void (*callbackfunc) (const char *status, const char *error, void *util);
 
 @interface FacebookLoginButton : NSObject
+@end
 
-
-@property (nonatomic, assign) callbackfunc mCallback;
-@property (nonatomic, assign) void* mUtil;
-
-void PressFacebookButton(callbackfunc callback, void *util);
+void Login(callbackfunc callback, void *util);

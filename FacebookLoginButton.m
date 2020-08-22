@@ -1,38 +1,32 @@
 #import "FacebookLoginButton.h"
 
-@synthesize mCallback = _callback;
-@synthesize mUtil = _util;
+@interface FacebookLoginButton() <NSObject>
+@end
 
--(void)onPress:(callbackfunc)callback util:(void*)util{
+@implementation FacebookLoginButton
 
-    _callback = callback;
-    _util = util;
+-(void) LoginResult:(callbackfunc)callback util:(void*)util{
 
-   FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    if ([UIApplication.sharedApplication canOpenURL:[NSURL URLWithString:@"fb://"]])
-    {
-        login.loginBehavior = FBSDKLoginBehaviorSystemAccount;
-    }
+    FBSDKLoginManager *_loginManager = [[FBSDKLoginManager alloc] init];
 
-    [login logInWithReadPermissions:@[@"public_profile", @"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-        if (error)
-        {
-            NSLog(@"Unexpected login error: %@", error);
-            NSString *callbackStr = error.localizedDescription;
-            const char *callbackChar = [callbackStr UTF8String];
-            self.mCallback(callbackChar, self.mUtil);
-        }
-        else
-        {
-            if(result.token)   // This means if There is current access token.
-            {
-                self.mCallback(callbackChar, self.mUtil);
-            }
-        }
-    }];
+
+    FBSDKLoginManagerLoginResultBlock handler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        FBSDKAccessToken *token = result.token;
+        NSString *tokenString = token.tokenString;
+        const char *tokenStringChar = [tokenString UTF8String];
+        NSString *errorString = [error localizedDescription];
+        const char *errorStringChar = [errorString UTF8String];
+        callback(tokenStringChar, errorStringChar, util);
+    };
+
+    [_loginManager logInWithPermissions:@[@"public_profile"]
+                     fromViewController:nil
+                                handler:handler];
+
 }
+@end
 
-
-void PressFacebookButton(callbackfunc callback, void *util){
-    [onPress:callback util:util];
+void Login(callbackfunc callback, void *util){
+    FacebookLoginButton* facebookLoginButton = [[FacebookLoginButton alloc] init];
+    [facebookLoginButton LoginResult:callback util:util];
 }
