@@ -11,12 +11,21 @@ cdef extern from "FacebookLoginButton.h":
     void Login(callbackfunc call_back, void *_util)
 
 
-class FacebookLogin():
-    def __init__(self,util):
-        self.util = util
+class FacebookLogin:
+    def __init__(self, callback):
+        self.callback = callback
 
     def login_user(self):
-        Login(callback, <void*>self.util)
+        Login(callback, <void*>self)
+
+    def send_status(self, token, error):
+        if error:
+            print("Error:%s" % error)
+            self.callback(error)
+        if token:
+            print("Token:%s" % token)
+            self.callback(token)
+        print("Kivy-Facebook: Token and Error are null")
 
 
 cdef void callback(const char *status, const char *error, void *util) with gil:
