@@ -3,7 +3,7 @@
 #import "FBSDKLoginKit.framework/Headers/FBSDKLoginManager.h"
 #import "FBSDKShareKit.framework/Headers/FBSDKShareKit.h"
 
-typedef void (*typedefCB) (const char *status, const char *error, void *python_cb);
+typedef void (*typedefCB) (const char *status, const char *error, void *python_obj, void *python_cb);
 
 @interface FacebookController : NSObject
 
@@ -12,6 +12,6 @@ typedef void (*typedefCB) (const char *status, const char *error, void *python_c
 +(FacebookController*) sharedInstance;
 @end
 
-void Login(typedefCB obcjCB, void *python_cb);
-void GetGraphPath(typedefCB obcjCB, void *python_cb, char* field);
+void Login(typedefCB obcjCB,  void *python_obj, void *python_cb);
+void GetGraphPath(typedefCB obcjCB, void *python_obj, void *python_cb, char* field);
 void SharePhoto(char* path);

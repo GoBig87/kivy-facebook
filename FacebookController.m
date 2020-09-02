@@ -18,7 +18,7 @@ static FacebookController *facebookController;
     return facebookController;
 }
 
--(void) LoginResult:(typedefCB)objcCB python_cb:(void*)python_cb{
+-(void) LoginResult:(typedefCB)objcCB python_obj:(void*)python_obj python_cb:(void*)python_cb{
 
     _objcCB = objcCB;
 
@@ -30,7 +30,7 @@ static FacebookController *facebookController;
         const char *tokenStringChar = [tokenString UTF8String];
         NSString *errorString = [error localizedDescription];
         const char *errorStringChar = [errorString UTF8String];
-        self.mObjcCB(tokenStringChar, errorStringChar, python_cb);
+        self.mObjcCB(tokenStringChar, errorStringChar, python_obj, python_cb);
     };
 
     [_loginManager logInWithPermissions:@[@"public_profile", @"email"]
@@ -39,7 +39,7 @@ static FacebookController *facebookController;
 
 }
 
--(void) GraphPathUser:(typedefCB)objcCB python_cb:(void*)python_cb field:(char*)field{
+-(void) GraphPathUser:(typedefCB)objcCB python_obj:(void*)python_obj python_cb:(void*)python_cb field:(char*)field{
 
     _objcCB = objcCB;
 
@@ -57,7 +57,7 @@ static FacebookController *facebookController;
                                                      error:&error];
             NSString *resultString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
             const char *resultChar = [resultString UTF8String];
-            self.mObjcCB(resultChar, errorStringChar, python_cb);
+            self.mObjcCB(resultChar, errorStringChar, python_obj, python_cb);
       }];
     }
 }
@@ -85,11 +85,11 @@ static FacebookController *facebookController;
 
 @end
 
-void Login(typedefCB obcjCB, void *python_cb){
-    [[FacebookController sharedInstance]  LoginResult:obcjCB python_cb:python_cb];
+void Login(typedefCB obcjCB, void *python_obj, void *python_cb){
+    [[FacebookController sharedInstance]  LoginResult:obcjCB python_obj:python_obj python_cb:python_cb];
 }
 
-void GetGraphPath(typedefCB obcjCB, void *python_cb, char *field){
+void GetGraphPath(typedefCB obcjCB, void *python_obj, void *python_cb, char *field){
     [[FacebookController sharedInstance] GraphPathUser:obcjCB python_cb:python_cb field:field];
 }
 
